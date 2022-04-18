@@ -72,7 +72,18 @@ express --view=ejs my-app
 npm install
 ```
 
-- Run:
+- Copy .env.example to .env and setup the environment variable:
+
+```sh
+cp .env.example .env
+
+# default .env setup
+MODE=dev
+SERVICE_NAME=express-gamestore-server
+MONGO_URL=mongodb://127.0.0.1:27017/db_gamestore
+```
+
+- Run (development):
 
 ```sh
 # open in localhost:3000 by default
