@@ -6,6 +6,7 @@
 - [MongoDB](https://www.mongodb.com/)
 - [Mongoose](https://mongoosejs.com/)
 - [ESLint](https://eslint.org/)
+- [AdminLTE](https://adminlte.io/docs/3.2/)
 
 ## Requirements
 

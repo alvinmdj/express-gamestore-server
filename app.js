@@ -17,6 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/adminlte', express.static(path.join(__dirname, '/node_modules/admin-lte')));
 
 app.use('/', categoryRouter);
 
@@ -26,7 +27,7 @@ app.use((_req, _res, next) => {
 });
 
 // error handler
-app.use((err, req, res, _next) => {
+app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
