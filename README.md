@@ -12,6 +12,33 @@
 - NPM
 - MongoDB
 
+## Installation
+
+- Clone this repository:
+
+```sh
+git clone https://github.com/alvinmdj/express-gamestore-server.git
+```
+
+- Go inside the directory:
+
+```sh
+cd express-gamestore-server
+```
+
+- Install dependencies:
+
+```sh
+npm install
+```
+
+- Run (development):
+
+```sh
+# using nodemon
+npm run dev
+```
+
 ## [Express Generator](https://expressjs.com/en/starter/generator.html)
 
 - Install globally (first time only):
