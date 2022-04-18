@@ -4,6 +4,7 @@
 
 - [Express](https://expressjs.com/)
 - [MongoDB](https://www.mongodb.com/)
+- [Mongoose](https://mongoosejs.com/)
 - [ESLint](https://eslint.org/)
 
 ## Requirements
