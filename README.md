@@ -7,6 +7,7 @@
 - [Mongoose](https://mongoosejs.com/)
 - [ESLint](https://eslint.org/)
 - [AdminLTE](https://adminlte.io/docs/3.2/)
+- [Express - Method Override](http://expressjs.com/en/resources/middleware/method-override.html)
 
 ## Requirements
 
