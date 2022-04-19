@@ -19,10 +19,8 @@ module.exports = {
   actionCreate: async (req, res) => {
     try {
       const { name } = req.body;
-
       const category = await Category({ name });
       await category.save();
-
       res.redirect('/category');
     } catch (error) {
       console.error(error);
@@ -41,9 +39,16 @@ module.exports = {
     try {
       const { id } = req.params;
       const { name } = req.body;
-
       await Category.findOneAndUpdate({ _id: id }, { name });
-
+      res.redirect('/category');
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  actionDelete: async (req, res) => {
+    try {
+      const { id } = req.params;
+      await Category.findOneAndRemove({ _id: id });
       res.redirect('/category');
     } catch (error) {
       console.error(error);
