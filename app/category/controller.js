@@ -3,17 +3,26 @@ const Category = require('./model');
 module.exports = {
   index: async (req, res) => {
     try {
+      const alertMessage = req.flash('alertMessage');
+      const alertStatus = req.flash('alertStatus');
+
+      const alert = { message: alertMessage, status: alertStatus };
       const categories = await Category.find();
-      res.render('admin/category/view_category', { categories });
+
+      res.render('admin/category/view_category', { categories, alert });
     } catch (error) {
-      console.log(error);
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/category');
     }
   },
   viewCreate: async (req, res) => {
     try {
       res.render('admin/category/create');
     } catch (error) {
-      console.error(error);
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/category');
     }
   },
   actionCreate: async (req, res) => {
@@ -21,9 +30,15 @@ module.exports = {
       const { name } = req.body;
       const category = await Category({ name });
       await category.save();
+
+      req.flash('alertMessage', 'Success Create Category');
+      req.flash('alertStatus', 'success');
+
       res.redirect('/category');
     } catch (error) {
-      console.error(error);
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/category');
     }
   },
   viewEdit: async (req, res) => {
@@ -32,7 +47,9 @@ module.exports = {
       const category = await Category.findById({ _id: id });
       res.render('admin/category/edit', { category });
     } catch (error) {
-      console.error(error);
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/category');
     }
   },
   actionEdit: async (req, res) => {
@@ -40,18 +57,30 @@ module.exports = {
       const { id } = req.params;
       const { name } = req.body;
       await Category.findOneAndUpdate({ _id: id }, { name });
+
+      req.flash('alertMessage', 'Success Update Category');
+      req.flash('alertStatus', 'success');
+
       res.redirect('/category');
     } catch (error) {
-      console.error(error);
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/category');
     }
   },
   actionDelete: async (req, res) => {
     try {
       const { id } = req.params;
       await Category.findOneAndRemove({ _id: id });
+
+      req.flash('alertMessage', 'Success Delete Category');
+      req.flash('alertStatus', 'success');
+
       res.redirect('/category');
     } catch (error) {
-      console.error(error);
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/category');
     }
   },
 };
