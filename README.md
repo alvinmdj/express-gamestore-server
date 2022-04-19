@@ -103,6 +103,8 @@ npm run start
 
 - Create database: ```use <dbname>;```
 
+- Show all collections: ```show collections;```
+
 - insert one object into a collection:
 
 ```sh

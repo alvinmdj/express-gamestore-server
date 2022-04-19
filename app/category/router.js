@@ -2,11 +2,16 @@ const express = require('express');
 
 const router = express.Router();
 
-const { index } = require('./controller');
+const {
+  index,
+  viewCreate,
+  actionCreate,
+} = require('./controller');
 
 /* starts with /category */
 
-/* GET category page. */
 router.get('/', index);
+router.get('/create', viewCreate);
+router.post('/create', actionCreate);
 
 module.exports = router;
