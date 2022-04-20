@@ -41,33 +41,36 @@ module.exports = {
       res.redirect('/nominal');
     }
   },
-  // viewEdit: async (req, res) => {
-  //   try {
-  //     const { id } = req.params;
-  //     const category = await Category.findById({ _id: id });
-  //     res.render('admin/category/edit', { category });
-  //   } catch (error) {
-  //     req.flash('alertMessage', `${error.message}`);
-  //     req.flash('alertStatus', 'danger');
-  //     res.redirect('/category');
-  //   }
-  // },
-  // actionEdit: async (req, res) => {
-  //   try {
-  //     const { id } = req.params;
-  //     const { name } = req.body;
-  //     await Category.findOneAndUpdate({ _id: id }, { name });
+  viewEdit: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const nominal = await Nominal.findById(id);
+      res.render('admin/nominal/edit', { nominal });
+    } catch (error) {
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/nominal');
+    }
+  },
+  actionEdit: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { coinName, coinQuantity, price } = req.body;
 
-  //     req.flash('alertMessage', 'Success Update Category');
-  //     req.flash('alertStatus', 'success');
+      await Nominal.findOneAndUpdate({ _id: id }, {
+        coinName, coinQuantity, price,
+      });
 
-  //     res.redirect('/category');
-  //   } catch (error) {
-  //     req.flash('alertMessage', `${error.message}`);
-  //     req.flash('alertStatus', 'danger');
-  //     res.redirect('/category');
-  //   }
-  // },
+      req.flash('alertMessage', 'Success Update Nominal');
+      req.flash('alertStatus', 'success');
+
+      res.redirect('/nominal');
+    } catch (error) {
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/nominal');
+    }
+  },
   // actionDelete: async (req, res) => {
   //   try {
   //     const { id } = req.params;

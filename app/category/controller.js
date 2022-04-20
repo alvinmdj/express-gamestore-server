@@ -44,7 +44,7 @@ module.exports = {
   viewEdit: async (req, res) => {
     try {
       const { id } = req.params;
-      const category = await Category.findById({ _id: id });
+      const category = await Category.findOne({ _id: id });
       res.render('admin/category/edit', { category });
     } catch (error) {
       req.flash('alertMessage', `${error.message}`);
