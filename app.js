@@ -10,6 +10,7 @@ const flash = require('connect-flash');
 // router
 const dashboardRouter = require('./app/dashboard/router');
 const categoryRouter = require('./app/category/router');
+const config = require('./config');
 
 const app = express();
 
@@ -18,7 +19,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(session({
-  secret: 'keyboard cat',
+  secret: config.sessionSecret,
   resave: false,
   saveUninitialized: true,
   cookie: {},

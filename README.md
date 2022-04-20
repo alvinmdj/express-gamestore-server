@@ -85,6 +85,7 @@ cp .env.example .env
 MODE=dev
 SERVICE_NAME=express-gamestore-server
 MONGO_URL=mongodb://127.0.0.1:27017/db_gamestore
+SESSION_KEY=secretkey
 ```
 
 - Run (development):
