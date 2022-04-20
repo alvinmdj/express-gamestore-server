@@ -1,0 +1,113 @@
+<%- include ../../partials/header.ejs %>
+<%- include ../../partials/navbar.ejs %>
+<%- include ../../partials/sidebar.ejs %>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Voucher</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/voucher">Voucher</a></li>
+            <li class="breadcrumb-item active">Create</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Create New Voucher</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form action="/voucher/create" method="POST" enctype="multipart/form-data">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="name">Game Name</label>
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Enter Game Name" required>
+                </div>
+                <div class="form-group">
+                  <label>Category</label>
+                  <select class="form-control select2" style="width: 100%;" name="category" required>
+                    <option selected="selected">Choose a category</option>
+                    <% category.forEach(cat => { %>
+                      <option value="<%= cat._id %>"><%= cat.name %></option>  
+                    <% }) %>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Nominals</label>
+                  <div class="select2-purple">
+                    <select
+                      class="form-control select2"
+                      multiple="multiple"
+                      data-placeholder="Select nominal(s)"
+                      style="width: 100%;"
+                      name="nominals"
+                      required
+                    >
+                      <% nominal.forEach(nom => { %>
+                        <option value="<%= nom._id %>"><%= nom.coinQuantity %> <%= nom.coinName %> (Rp<%= nom.price %>)</option>  
+                      <% }) %>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="thumbnail">Game Thumbnail</label>
+                  <input type="file" class="form-control" name="thumbnail" id="thumbnail" required>
+                  <br />
+                  <img src="" id="preview">
+                </div>
+              </div>
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Add Voucher</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<%- include ../../partials/footer.ejs %>
+<%- include ../../partials/js.ejs %>
+
+<script>
+  const getThumbnailImageURL = (input) => {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        $('#preview').attr('src', e.target.result);
+        $('#preview').attr('width', '20%');
+        $('#preview').attr('height', '20%');
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  };
+
+  $('#thumbnail').change(function() {
+    getThumbnailImageURL(this);
+  });
+</script>
