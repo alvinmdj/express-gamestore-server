@@ -39,7 +39,7 @@ module.exports = {
       const { name, category, nominals } = req.body;
 
       if (req.file) {
-        const tmpPath = req.file.path;
+        const tmpPath = req.file.path; // file path in tmpdir (C:\Users\Username\AppData\Local\Temp\filename)
         const originalExt = req.file.originalname.split('.')[req.file.originalname.split('.').length - 1];
         const fileName = `${req.file.filename}.${originalExt}`;
         const targetPath = path.resolve(config.rootPath, `public/uploads/${fileName}`);
