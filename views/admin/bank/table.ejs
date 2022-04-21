@@ -1,0 +1,72 @@
+<table id="example2" class="table table-bordered table-hover">
+  <thead>
+  <tr>
+    <th>No.</th>
+    <th>Customer Name</th>
+    <th>Bank Name</th>
+    <th>Account Number</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% for(let i = 0; i < bank.length; i++) { %>
+      <tr>
+        <td><%= i + 1 %></td>
+        <td><%= bank[i].name %></td>
+        <td><%= bank[i].bankName %></td>
+        <td><%= bank[i].accountNumber %></td>
+        <td>
+          <div>
+            <a href="/bank/edit/<%= bank[i]._id %>" class="btn btn-warning btn-sm rounded-pill">
+              <i class="fas fa-pencil-alt"></i>
+              &nbsp;
+              Edit
+            </a>
+            <button type="button" class="btn btn-danger btn-sm rounded-pill" data-toggle="modal" data-target="#modal-danger-<%= bank[i]._id %>">
+              <i class="fas fa-trash"></i>
+              &nbsp;
+              Delete
+            </button>
+          </div>
+        </td>
+      </tr>
+    <% } %>
+  </tbody>
+  <tfoot>
+  <tr>
+    <th>No.</th>
+    <th>Customer Name</th>
+    <th>Bank Name</th>
+    <th>Account Number</th>
+    <th>Actions</th>
+  </tr>
+  </tfoot>
+</table>
+
+<!-- Delete Confirmation Modal -->
+<% for(let i = 0; i < bank.length; i++) { %>
+<div class="modal fade" id="modal-danger-<%= bank[i]._id %>">
+  <div class="modal-dialog">
+    <div class="modal-content bg-danger">
+      <div class="modal-header">
+        <h4 class="modal-title">Delete Confirmation</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span>Are you sure to delete bank "<%= bank[i].name %> (<%= bank[i].bankName %>)"?</span>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <form action="/bank/delete/<%= bank[i]._id %>?_method=DELETE" method="POST">
+          <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-outline-light">Yes, delete this bank!</button>
+        </form>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<% } %>
