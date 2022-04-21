@@ -1,0 +1,99 @@
+<table id="example2" class="table table-bordered table-hover">
+  <thead>
+  <tr>
+    <th>No.</th>
+    <th>Game Name</th>
+    <th>Category</th>
+    <th>Nominal</th>
+    <th>Thumbnail</th>
+    <th>Status</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% for(let i = 0; i < voucher.length; i++) { %>
+      <tr>
+        <td><%= i + 1 %></td>
+        <td><%= voucher[i].name %></td>
+        <td><%= voucher[i]?.category.name ?? '-' %></td>
+        <td>
+          <% voucher[i].nominals.forEach((nominal) => { %>
+            <span class="badge badge-warning">
+              <%= nominal.coinQuantity %> <%= nominal.coinName %>
+            </span>
+          <% }) %>
+        </td>
+        <td><img src="/uploads/<%= voucher[i].thumbnail %>" width="50px"></td>
+        <td>
+          <% if (voucher[i].status === 'Y') { %>
+            <span class="badge badge-success">Active</span>
+          <% } else { %>
+            <span class="badge badge-danger">Inactive</span>
+          <% } %>
+        </td>
+        <td>
+          <form action="" style="display: inline-block">
+            <button type="button" class="btn btn-primary btn-sm rounded-pill" data-toggle="modal" data-target="#modal-danger-<%= voucher[i]._id %>">
+              <% if (voucher[i].status === 'Y') { %>
+                Deactivate
+              <% } else { %>
+                Activate
+              <% } %>
+            </button>
+          </form>
+          <div style="display: inline-block">
+            <a href="/voucher/edit/<%= voucher[i]._id %>" class="btn btn-warning btn-sm rounded-pill">
+              <i class="fas fa-pencil-alt"></i>
+              &nbsp;
+              Edit
+            </a>
+            <button type="button" class="btn btn-danger btn-sm rounded-pill" data-toggle="modal" data-target="#modal-danger-<%= voucher[i]._id %>">
+              <i class="fas fa-trash"></i>
+              &nbsp;
+              Delete
+            </button>
+          </div>
+        </td>
+      </tr>
+    <% } %>
+  </tbody>
+  <tfoot>
+  <tr>
+    <th>No.</th>
+    <th>Game Name</th>
+    <th>Category</th>
+    <th>Nominal</th>
+    <th>Thumbnail</th>
+    <th>Status</th>
+    <th>Actions</th>
+  </tr>
+  </tfoot>
+</table>
+
+<!-- Delete Confirmation Modal -->
+<% for(let i = 0; i < voucher.length; i++) { %>
+<div class="modal fade" id="modal-danger-<%= voucher[i]._id %>">
+  <div class="modal-dialog">
+    <div class="modal-content bg-danger">
+      <div class="modal-header">
+        <h4 class="modal-title">Delete Confirmation</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span>Are you sure to delete voucher "<%= voucher[i].name %>"?</span>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <form action="/voucher/delete/<%= voucher[i]._id %>?_method=DELETE" method="POST">
+          <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-outline-light">Yes, delete this voucher!</button>
+        </form>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<% } %>

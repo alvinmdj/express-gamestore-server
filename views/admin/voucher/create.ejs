@@ -42,7 +42,7 @@
                 <div class="form-group">
                   <label>Category</label>
                   <select class="form-control select2" style="width: 100%;" name="category" required>
-                    <option selected="selected">Choose a category</option>
+                    <option selected="selected" value="">Choose a category</option>
                     <% category.forEach(cat => { %>
                       <option value="<%= cat._id %>"><%= cat.name %></option>  
                     <% }) %>
