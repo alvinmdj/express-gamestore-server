@@ -32,8 +32,8 @@
           <% } %>
         </td>
         <td>
-          <form action="" style="display: inline-block">
-            <button type="button" class="btn btn-primary btn-sm rounded-pill" data-toggle="modal" data-target="#modal-danger-<%= voucher[i]._id %>">
+          <form action="/voucher/status/<%= voucher[i]._id %>?_method=PUT" method="POST" style="display: inline-block">
+            <button class="btn btn-primary btn-sm rounded-pill">
               <i class="fas fa-lightbulb"></i>
               &nbsp;
               <% if (voucher[i].status === 'Y') { %>

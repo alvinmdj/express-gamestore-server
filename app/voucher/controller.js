@@ -145,19 +145,39 @@ module.exports = {
       res.redirect('/voucher');
     }
   },
-  // actionDelete: async (req, res) => {
-  //   try {
-  //     const { id } = req.params;
-  //     await Nominal.findOneAndRemove({ _id: id });
+  actionDelete: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const voucher = await Voucher.findOneAndRemove({ _id: id });
 
-  //     req.flash('alertMessage', 'Success Delete Nominal');
-  //     req.flash('alertStatus', 'success');
+      const currThumbnail = `${config.rootPath}/public/uploads/${voucher.thumbnail}`;
+      if (fs.existsSync(currThumbnail)) {
+        fs.unlinkSync(currThumbnail);
+      }
 
-  //     res.redirect('/nominal');
-  //   } catch (error) {
-  //     req.flash('alertMessage', `${error.message}`);
-  //     req.flash('alertStatus', 'danger');
-  //     res.redirect('/nominal');
-  //   }
-  // },
+      req.flash('alertMessage', 'Success Delete Voucher');
+      req.flash('alertStatus', 'success');
+      res.redirect('/voucher');
+    } catch (error) {
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/voucher');
+    }
+  },
+  actionStatus: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const voucher = await Voucher.findById(id);
+      const status = voucher.status === 'Y' ? 'N' : 'Y';
+      await Voucher.findByIdAndUpdate(id, { status });
+
+      req.flash('alertMessage', 'Success Update Voucher Status');
+      req.flash('alertStatus', 'success');
+      res.redirect('/voucher');
+    } catch (error) {
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/voucher');
+    }
+  },
 };
