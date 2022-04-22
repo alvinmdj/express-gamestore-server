@@ -4,7 +4,8 @@ module.exports = {
       req.flash('alertMessage', 'Sorry, your session has expired. Please login again.');
       req.flash('alertStatus', 'danger');
       res.redirect('/');
+    } else {
+      next();
     }
-    next();
   },
 };
