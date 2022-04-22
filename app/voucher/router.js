@@ -1,6 +1,8 @@
 const os = require('os');
 const express = require('express');
 const multer = require('multer');
+
+const { isLoggedInAdmin } = require('../middleware/auth');
 const {
   index,
   viewCreate,
@@ -15,6 +17,7 @@ const router = express.Router();
 
 /* starts with /voucher */
 
+router.use(isLoggedInAdmin);
 router.get('/', index);
 router.get('/create', viewCreate);
 router.post('/create', multer({ dest: os.tmpdir() }).single('thumbnail') /* name of the file input field */, actionCreate); // os.tmpdir() located at temp dir -> C:\Users\Username\AppData\Local\Temp

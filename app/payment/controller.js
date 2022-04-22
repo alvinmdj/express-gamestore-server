@@ -10,7 +10,12 @@ module.exports = {
       const alert = { message: alertMessage, status: alertStatus };
       const payment = await Payment.find().populate('banks');
 
-      res.render('admin/payment/view_payment', { payment, alert });
+      res.render('admin/payment/view_payment', {
+        payment,
+        alert,
+        name: req.session.user.name,
+        title: 'Payment Method',
+      });
     } catch (error) {
       req.flash('alertMessage', `${error.message}`);
       req.flash('alertStatus', 'danger');
@@ -20,7 +25,11 @@ module.exports = {
   viewCreate: async (req, res) => {
     try {
       const banks = await Bank.find();
-      res.render('admin/payment/create', { banks });
+      res.render('admin/payment/create', {
+        banks,
+        name: req.session.user.name,
+        title: 'Add Payment Method',
+      });
     } catch (error) {
       req.flash('alertMessage', `${error.message}`);
       req.flash('alertStatus', 'danger');
@@ -48,7 +57,12 @@ module.exports = {
       const { id } = req.params;
       const payment = await Payment.findById(id).populate('banks');
       const banks = await Bank.find();
-      res.render('admin/payment/edit', { payment, banks });
+      res.render('admin/payment/edit', {
+        payment,
+        banks,
+        name: req.session.user.name,
+        title: 'Edit Payment Method',
+      });
     } catch (error) {
       req.flash('alertMessage', `${error.message}`);
       req.flash('alertStatus', 'danger');

@@ -47,6 +47,9 @@ npm run dev
 - Test account:
 
 ```sh
+# first, import config/users.json to users collection in database (I use MongoDB Compass)
+
+# login with this credentials:
 email: alvin@admin.com
 password: rahasia
 ```
