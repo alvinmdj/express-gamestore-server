@@ -27,7 +27,18 @@
           <% } %>  
         </td>
         <td>
-          <div>
+          <form action="/payment/status/<%= payment[i]._id %>?_method=PUT" method="POST" style="display: inline-block">
+            <button class="btn btn-primary btn-sm rounded-pill">
+              <i class="fas fa-lightbulb"></i>
+              &nbsp;
+              <% if (payment[i].status === 'Y') { %>
+                Deactivate
+              <% } else { %>
+                Activate
+              <% } %>
+            </button>
+          </form>
+          <div style="display: inline-block">
             <a href="/payment/edit/<%= payment[i]._id %>" class="btn btn-warning btn-sm rounded-pill">
               <i class="fas fa-pencil-alt"></i>
               &nbsp;

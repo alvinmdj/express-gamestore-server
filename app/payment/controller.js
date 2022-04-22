@@ -43,49 +43,64 @@ module.exports = {
       res.redirect('/payment');
     }
   },
-  // viewEdit: async (req, res) => {
-  //   try {
-  //     const { id } = req.params;
-  //     const nominal = await Nominal.findById(id);
-  //     res.render('admin/nominal/edit', { nominal });
-  //   } catch (error) {
-  //     req.flash('alertMessage', `${error.message}`);
-  //     req.flash('alertStatus', 'danger');
-  //     res.redirect('/nominal');
-  //   }
-  // },
-  // actionEdit: async (req, res) => {
-  //   try {
-  //     const { id } = req.params;
-  //     const { coinName, coinQuantity, price } = req.body;
+  viewEdit: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const payment = await Payment.findById(id).populate('banks');
+      const banks = await Bank.find();
+      res.render('admin/payment/edit', { payment, banks });
+    } catch (error) {
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/payment');
+    }
+  },
+  actionEdit: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { type, banks } = req.body;
 
-  //     await Nominal.findOneAndUpdate({ _id: id }, {
-  //       coinName, coinQuantity, price,
-  //     });
+      await Payment.findOneAndUpdate({ _id: id }, { type, banks });
 
-  //     req.flash('alertMessage', 'Success Update Nominal');
-  //     req.flash('alertStatus', 'success');
+      req.flash('alertMessage', 'Success Update Payment Method');
+      req.flash('alertStatus', 'success');
 
-  //     res.redirect('/nominal');
-  //   } catch (error) {
-  //     req.flash('alertMessage', `${error.message}`);
-  //     req.flash('alertStatus', 'danger');
-  //     res.redirect('/nominal');
-  //   }
-  // },
-  // actionDelete: async (req, res) => {
-  //   try {
-  //     const { id } = req.params;
-  //     await Nominal.findOneAndRemove({ _id: id });
+      res.redirect('/payment');
+    } catch (error) {
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/payment');
+    }
+  },
+  actionDelete: async (req, res) => {
+    try {
+      const { id } = req.params;
+      await Payment.findOneAndRemove({ _id: id });
 
-  //     req.flash('alertMessage', 'Success Delete Nominal');
-  //     req.flash('alertStatus', 'success');
+      req.flash('alertMessage', 'Success Delete Payment Method');
+      req.flash('alertStatus', 'success');
 
-  //     res.redirect('/nominal');
-  //   } catch (error) {
-  //     req.flash('alertMessage', `${error.message}`);
-  //     req.flash('alertStatus', 'danger');
-  //     res.redirect('/nominal');
-  //   }
-  // },
+      res.redirect('/payment');
+    } catch (error) {
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/payment');
+    }
+  },
+  actionStatus: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const payment = await Payment.findById(id);
+      const status = payment.status === 'Y' ? 'N' : 'Y';
+      await Payment.findByIdAndUpdate(id, { status });
+
+      req.flash('alertMessage', 'Success Update Payment Status');
+      req.flash('alertStatus', 'success');
+      res.redirect('/payment');
+    } catch (error) {
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/payment');
+    }
+  },
 };
