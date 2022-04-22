@@ -1,0 +1,29 @@
+[
+  {
+    "_id": {
+      "$oid": "60ae2431196ccd27e6587ab1"
+    },
+    "name": "ADMIN VIN 1",
+    "accountNumber": "123456789",
+    "bankName": "BCA",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "60ae2431196ccd27e6587ab2"
+    },
+    "name": "ADMIN VIN 2",
+    "accountNumber": "18273891273",
+    "bankName": "Mandiri",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "60ae2431196ccd27e6587ab3"
+    },
+    "name": "ADMIN VIN 3",
+    "accountNumber": "2839172398",
+    "bankName": "Credit card",
+    "__v": 0
+  }
+]

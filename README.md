@@ -44,15 +44,21 @@ npm install
 npm run dev
 ```
 
+## Additionals
+
 - Test account:
 
 ```sh
-# first, import config/users.json to users collection in database (I use MongoDB Compass)
+# first, import config/json/users.json to users collection in database (I use MongoDB Compass)
 
 # login with this credentials:
 email: alvin@admin.com
 password: rahasia
 ```
+
+- Dummy data:
+  
+  Import each json file from ```config/json/<collection-name>.json``` to each collection in database (I use MongoDB Compass).
 
 ## [Express Generator](https://expressjs.com/en/starter/generator.html)
 

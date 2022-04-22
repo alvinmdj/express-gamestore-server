@@ -1,0 +1,73 @@
+<table id="example2" class="table table-bordered table-hover">
+  <thead>
+  <tr>
+    <th>No.</th>
+    <th>Game Name</th>
+    <th>Item</th>
+    <th>Total Price</th>
+    <th>Status</th>
+    <th>Player Name</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% for(let i = 0; i < transaction.length; i++) { %>
+      <tr>
+        <td><%= i + 1 %></td>
+        <td>
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <img src="/uploads/<%= transaction[i].topUpHistory.thumbnail %>" alt="thumbnail" 
+                width="48px" height="48px" />
+            </li>
+          </ul>
+          <%= transaction[i]?.topUpHistory?.gameName %>
+          <br />
+          <%= transaction[i]?.topUpHistory?.category %>
+        </td>
+        <td>
+          <%= transaction[i]?.topUpHistory?.coinQuantity %>
+          <%= transaction[i]?.topUpHistory?.coinName %>
+        </td>
+        <td>Rp<%= transaction[i]?.topUpHistory?.price %></td>
+        <td>
+          <% if (transaction[i].status === 'pending') { %>
+            <span class="badge badge-warning">Pending</span>
+          <% } else if (transaction[i].status === 'success') { %>
+            <span class="badge badge-success">Success</span>
+          <% } else { %>
+            <span class="badge badge-danger">Failed</span>    
+          <% } %>
+        </td>
+        <td><%= transaction[i].player?.name ?? '-' %></td>
+        <td>
+          <form style="display: inline-block" action="/transaction/status/<%= transaction[i]._id %>?_method=PUT" method="POST">
+            <button type="button" class="btn btn-danger btn-sm rounded-pill" data-toggle="modal" data-target="#modal-danger-<%= transaction[i]._id %>">
+              <i class="fas fa-times-circle"></i>
+              &nbsp;
+              Reject
+            </button>
+          </form>
+          <form style="display: inline-block" action="/transaction/status/<%= transaction[i]._id %>?_method=PUT" method="POST">
+            <button type="button" class="btn btn-info btn-sm rounded-pill" data-toggle="modal" data-target="#modal-danger-<%= transaction[i]._id %>">
+              <i class="fas fa-check"></i>
+              &nbsp;
+              Confirm
+            </button>
+          </form>
+        </td>
+      </tr>
+    <% } %>
+  </tbody>
+  <tfoot>
+  <tr>
+    <th>No.</th>
+    <th>Game Name</th>
+    <th>Item</th>
+    <th>Total Price</th>
+    <th>Status</th>
+    <th>Player Name</th>
+    <th>Actions</th>
+  </tr>
+  </tfoot>
+</table>
