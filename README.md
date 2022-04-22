@@ -44,6 +44,13 @@ npm install
 npm run dev
 ```
 
+- Test account:
+
+```sh
+email: alvin@admin.com
+password: rahasia
+```
+
 ## [Express Generator](https://expressjs.com/en/starter/generator.html)
 
 - Install globally (first time only):

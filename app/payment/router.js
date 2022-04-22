@@ -2,6 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
+const { isLoggedInAdmin } = require('../middleware/auth');
+
 const {
   index,
   viewCreate,
@@ -14,6 +16,7 @@ const {
 
 /* starts with /nominal */
 
+router.use(isLoggedInAdmin);
 router.get('/', index);
 router.get('/create', viewCreate);
 router.post('/create', actionCreate);
