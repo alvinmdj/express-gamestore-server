@@ -5,6 +5,6 @@ const categorySchema = mongoose.Schema({
     type: String,
     required: [true, 'Category name is required'],
   },
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('Category', categorySchema);

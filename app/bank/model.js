@@ -13,6 +13,6 @@ const bankSchema = mongoose.Schema({
     type: String,
     required: [true, 'Account number is required'],
   },
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('Bank', bankSchema);
