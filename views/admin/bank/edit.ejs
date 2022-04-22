@@ -2,6 +2,8 @@
 <%- include ../../partials/navbar.ejs %>
 <%- include ../../partials/sidebar.ejs %>
 
+<% const banks = ['BCA', 'BNI', 'BRI', 'Mandiri', 'Jago'] %>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -39,9 +41,24 @@
                   <label for="name">Customer Name</label>
                   <input type="text" value="<%= bank.name %>" class="form-control" name="name" id="name" placeholder="Enter Customer Name">
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="bankName">Bank Name</label>
                   <input type="text" value="<%= bank.bankName %>" class="form-control" name="bankName" id="bankName" placeholder="Enter Bank Name">
+                </div> -->
+                <div class="form-group">
+                  <label>Bank Name</label>
+                  <select class="form-control select2" style="width: 100%;" name="bankName">
+                    <option selected="selected" value="">Choose a Bank</option>
+                    <% banks.forEach((b) => { %>
+                      <option value="<%= b %>"
+                        <% if (b === bank.bankName) { %>
+                          selected
+                        <% } %>
+                      >
+                        <%= b %>
+                      </option>
+                    <% }) %>
+                  </select>
                 </div>
                 <div class="form-group">
                   <label for="accountNumber">Account Number</label>
