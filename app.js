@@ -14,6 +14,7 @@ const nominalRouter = require('./app/nominal/router');
 const voucherRouter = require('./app/voucher/router');
 const bankRouter = require('./app/bank/router');
 const paymentRouter = require('./app/payment/router');
+const usersRouter = require('./app/users/router');
 
 const config = require('./config');
 
@@ -40,7 +41,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/adminlte', express.static(path.join(__dirname, '/node_modules/admin-lte')));
 
 // setup router
-app.use('/', dashboardRouter);
+app.use('/', usersRouter);
+app.use('/dashboard', dashboardRouter);
 app.use('/category', categoryRouter);
 app.use('/nominal', nominalRouter);
 app.use('/voucher', voucherRouter);
