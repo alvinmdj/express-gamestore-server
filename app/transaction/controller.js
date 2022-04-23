@@ -10,15 +10,28 @@ module.exports = {
       const transaction = await Transaction.find();
       // .populate('player');
 
-      // console.log('transaction >>');
-      // console.log(transaction);
-
       res.render('admin/transaction/view_transaction', {
         transaction,
         alert,
         name: req.session.user.name,
         title: 'Transaction',
       });
+    } catch (error) {
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/transaction');
+    }
+  },
+  actionStatus: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { status } = req.query;
+
+      await Transaction.findByIdAndUpdate(id, { status });
+
+      req.flash('alertMessage', 'Status successfully updated');
+      req.flash('alertStatus', 'success');
+      res.redirect('/transaction');
     } catch (error) {
       req.flash('alertMessage', `${error.message}`);
       req.flash('alertStatus', 'danger');
