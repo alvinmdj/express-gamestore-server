@@ -37,6 +37,12 @@ cd express-gamestore-server
 npm install
 ```
 
+- Add .env and setup environment variables:
+
+```sh
+cp .env.example .env
+```
+
 - Run (development):
 
 ```sh
