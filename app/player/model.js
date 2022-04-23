@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
+const playerSchema = mongoose.Schema({
   email: {
     type: String,
     required: [true, 'Email address is required'],
@@ -10,6 +10,12 @@ const userSchema = mongoose.Schema({
     required: [true, 'Name is required'],
     minlength: [3, 'Name must be at least 3 characters'],
     maxlength: [225, 'Name must be less than or equal to 225 characters'],
+  },
+  username: {
+    type: String,
+    required: [true, 'Username is required'],
+    minlength: [3, 'Username must be at least 3 characters'],
+    maxlength: [225, 'Username must be less than or equal to 225 characters'],
   },
   password: {
     type: String,
@@ -26,13 +32,23 @@ const userSchema = mongoose.Schema({
   role: {
     type: String,
     enum: ['admin', 'user'],
-    default: 'admin',
+    default: 'user',
   },
   status: {
     type: String,
     enum: ['Y', 'N'],
     default: 'Y',
   },
+  avatar: {
+    type: String,
+  },
+  fileName: {
+    type: String,
+  },
+  favorite: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category',
+  },
 }, { timestamps: true });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Player', playerSchema);
