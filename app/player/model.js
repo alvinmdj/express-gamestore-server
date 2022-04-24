@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 
+const bcrypt = require('bcryptjs');
+
+const HASH_ROUND = 10;
+
 const playerSchema = mongoose.Schema({
   email: {
     type: String,
@@ -50,5 +54,22 @@ const playerSchema = mongoose.Schema({
     ref: 'Category',
   },
 }, { timestamps: true });
+
+// eslint-disable-next-line func-names
+playerSchema.path('email').validate(async function (value) {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const count = await this.model('Player').countDocuments({ email: value });
+    return !count;
+  } catch (error) {
+    throw error;
+  }
+}, (attr) => `${attr.value} already exists`);
+
+// eslint-disable-next-line func-names
+playerSchema.pre('save', function (next) {
+  this.password = bcrypt.hashSync(this.password, HASH_ROUND);
+  next();
+});
 
 module.exports = mongoose.model('Player', playerSchema);

@@ -20,6 +20,7 @@ const playerAdminRouter = require('./app/player/adminRouter');
 
 // get api router
 const playerRouter = require('./app/player/router');
+const authRouter = require('./app/auth/router');
 
 const config = require('./config');
 
@@ -59,6 +60,7 @@ app.use('/player', playerAdminRouter);
 
 // api
 app.use(`${url}/players`, playerRouter);
+app.use(`${url}/auth`, authRouter);
 
 // catch 404 and forward to error handler
 app.use((_req, _res, next) => {

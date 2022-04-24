@@ -14,7 +14,7 @@ module.exports = {
       res.redirect('/dashboard');
     }
   },
-  landingPage: async (req, res) => {
+  landingPage: async (_req, res) => {
     try {
       const voucher = await Voucher.find()
         .select('_id name status category thumbnail')
