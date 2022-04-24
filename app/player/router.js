@@ -4,7 +4,7 @@ const router = express.Router();
 
 const { landingPage } = require('./controller');
 
-/* starts with /players */
+/* starts with /api/v1/players */
 
 router.get('/landing-page', landingPage);
 

@@ -16,6 +16,9 @@ const bankRouter = require('./app/bank/router');
 const paymentRouter = require('./app/payment/router');
 const usersRouter = require('./app/users/router');
 const transactionRouter = require('./app/transaction/router');
+const playerAdminRouter = require('./app/player/adminRouter');
+
+// get api router
 const playerRouter = require('./app/player/router');
 
 const config = require('./config');
@@ -52,6 +55,7 @@ app.use('/voucher', voucherRouter);
 app.use('/bank', bankRouter);
 app.use('/payment', paymentRouter);
 app.use('/transaction', transactionRouter);
+app.use('/player', playerAdminRouter);
 
 // api
 app.use(`${url}/players`, playerRouter);

@@ -1,0 +1,31 @@
+<table id="example2" class="table table-bordered table-hover">
+  <thead>
+  <tr>
+    <th>No.</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Username</th>
+    <th>Phone Number</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% for(let i = 0; i < players.length; i++) { %>
+      <tr>
+        <td><%= i + 1 %></td>
+        <td><%= players[i].name %></td>
+        <td><%= players[i].email %></td>
+        <td><%= players[i].username %></td>
+        <td><%= players[i].phoneNumber %></td>
+      </tr>
+    <% } %>
+  </tbody>
+  <tfoot>
+  <tr>
+    <th>No.</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Username</th>
+    <th>Phone Number</th>
+  </tr>
+  </tfoot>
+</table>
