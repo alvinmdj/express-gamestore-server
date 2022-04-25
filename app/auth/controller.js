@@ -1,7 +1,9 @@
 const path = require('path');
 const fs = require('fs');
-const config = require('../../config');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
+const config = require('../../config');
 const Player = require('../player/model');
 
 module.exports = {
@@ -62,5 +64,44 @@ module.exports = {
       }
       next(error);
     }
+  },
+  signIn: async (req, res, next) => {
+    const { email, password } = req.body;
+    Player.findOne({ email })
+      .then((player) => {
+        if (player) {
+          const isMatchedPassword = bcrypt.compareSync(password, player.password);
+          if (isMatchedPassword) {
+            const token = jwt.sign({
+              player: {
+                id: player.id,
+                username: player.name,
+                email: player.email,
+                name: player.name,
+                phoneNumber: player.phoneNumber,
+                avatar: player.avatar,
+              },
+            }, config.jwtKey);
+
+            res.status(200).json({
+              data: { token },
+            });
+          } else {
+            res.status(403).json({
+              message: 'Email or password is incorrect',
+            });
+          }
+        } else {
+          res.status(403).json({
+            message: 'Email or password is incorrect',
+          });
+        }
+      })
+      .catch((error) => {
+        res.status(500).json({
+          message: error.message || 'Internal Server Error',
+        });
+        next();
+      });
   },
 };
