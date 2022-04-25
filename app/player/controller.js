@@ -1,6 +1,11 @@
+/* eslint-disable no-underscore-dangle */
 const Player = require('./model');
 const Voucher = require('../voucher/model');
 const Category = require('../category/model');
+const Bank = require('../bank/model');
+const Payment = require('../payment/model');
+const Nominal = require('../nominal/model');
+const Transaction = require('../transaction/model');
 
 module.exports = {
   index: async (req, res) => {
@@ -59,6 +64,69 @@ module.exports = {
       res.status(200).json({ data: category });
     } catch (error) {
       res.status(500).json({
+        message: error.message || 'Internal Server Error',
+      });
+    }
+  },
+  checkOut: async (req, res) => {
+    try {
+      const {
+        userAccount, name, nominal, voucher, payment, bank,
+      } = req.body;
+
+      const resVoucher = await Voucher.findById(voucher)
+        .select('_id name category thumbnail user')
+        .populate('category')
+        .populate('user');
+      if (!resVoucher) return res.status(404).json({ message: 'Voucher not found' });
+
+      const resNominal = await Nominal.findById(nominal);
+      if (!resNominal) return res.status(404).json({ message: 'Nominal not found' });
+
+      const resPayment = await Payment.findById(payment);
+      if (!resPayment) return res.status(404).json({ message: 'Payment not found' });
+
+      const resBank = await Bank.findById(bank);
+      if (!resBank) return res.status(404).json({ message: 'Bank not found' });
+
+      const tax = (10 / 100) * resNominal._doc.price;
+      const value = resNominal._doc.price - tax;
+
+      const payload = {
+        topUpHistory: {
+          gameName: resVoucher._doc.name,
+          category: resVoucher._doc.category ? resVoucher._doc.category.name : '',
+          thumbnail: resVoucher._doc.thumbnail,
+          coinName: resNominal._doc.coinName,
+          coinQuantity: resNominal._doc.coinQuantity,
+          price: resNominal._doc.price,
+        },
+        paymentHistory: {
+          name: resBank._doc.name,
+          type: resPayment._doc.type,
+          bankName: resBank._doc.bankName,
+          accountNumber: resBank._doc.accountNumber,
+        },
+        name,
+        userAccount,
+        tax,
+        value,
+        player: req.player._id,
+        category: resVoucher._doc.category._id,
+        voucherTopUp: resVoucher._doc._id,
+        user: resVoucher._doc.user?._id,
+        userHistory: {
+          name: resVoucher._doc.user?.name,
+          phoneNumber: resVoucher._doc.user?.phoneNumber,
+        },
+      };
+
+      const transaction = new Transaction(payload);
+      await transaction.save();
+
+      return res.status(201).json({ data: transaction });
+    } catch (error) {
+      return res.status(500).json({
         message: error.message || 'Internal Server Error',
       });
     }
