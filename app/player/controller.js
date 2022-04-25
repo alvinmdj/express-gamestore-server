@@ -90,7 +90,7 @@ module.exports = {
       if (!resBank) return res.status(404).json({ message: 'Bank not found' });
 
       const tax = (10 / 100) * resNominal._doc.price;
-      const value = resNominal._doc.price - tax;
+      const value = resNominal._doc.price + tax;
 
       const payload = {
         topUpHistory: {
@@ -125,6 +125,46 @@ module.exports = {
       await transaction.save();
 
       return res.status(201).json({ data: transaction });
+    } catch (error) {
+      return res.status(500).json({
+        message: error.message || 'Internal Server Error',
+      });
+    }
+  },
+  history: async (req, res) => {
+    try {
+      const { status = '' } = req.query;
+
+      let criteria = {};
+
+      // filter by status (pending, success, failed) if any
+      if (status.length) {
+        criteria = {
+          ...criteria,
+          status: { $regex: `${status}`, $options: 'i' },
+        };
+      }
+
+      // filter by player
+      if (req.player._id) {
+        criteria = {
+          ...criteria,
+          player: req.player._id,
+        };
+      }
+
+      const history = await Transaction.find(criteria);
+
+      // get total value of transaction
+      const total = await Transaction.aggregate([
+        { $match: criteria },
+        { $group: { _id: null, value: { $sum: '$value' } } },
+      ]);
+
+      return res.status(200).json({
+        data: history,
+        total: total.length ? total[0].value : 0,
+      });
     } catch (error) {
       return res.status(500).json({
         message: error.message || 'Internal Server Error',
