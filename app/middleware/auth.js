@@ -27,7 +27,7 @@ module.exports = {
       next();
     } catch (error) {
       res.status(401).json({
-        message: error || 'Unauthorized access to this resource',
+        message: 'Unauthorized access to this resource',
       });
     }
   },

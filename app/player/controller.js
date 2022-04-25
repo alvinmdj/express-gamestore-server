@@ -189,4 +189,41 @@ module.exports = {
       });
     }
   },
+  dashboard: async (req, res) => {
+    try {
+      // get total transaction for each category
+      const count = await Transaction.aggregate([
+        { $match: { player: req.player._id } },
+        {
+          $group: {
+            _id: '$category',
+            value: { $sum: '$value' },
+          },
+        },
+      ]);
+
+      const category = await Category.find();
+
+      // get category name
+      category.forEach((cat) => {
+        count.forEach((data) => {
+          if (data._id.toString() === cat._id.toString()) {
+            // eslint-disable-next-line no-param-reassign
+            data.name = cat.name;
+          }
+        });
+      });
+
+      // get transaction history and sort by updatedAt (desc)
+      const history = await Transaction.find({ player: req.player._id })
+        .populate('category')
+        .sort({ updatedAt: -1 });
+
+      res.status(200).json({ data: history, count });
+    } catch (error) {
+      res.status(500).json({
+        message: error.message || 'Internal Server Error',
+      });
+    }
+  },
 };
