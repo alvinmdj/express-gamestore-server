@@ -226,4 +226,21 @@ module.exports = {
       });
     }
   },
+  profile: async (req, res) => {
+    try {
+      const player = {
+        id: req.player._id,
+        username: req.player.username,
+        name: req.player.name,
+        email: req.player.email,
+        phoneNumber: req.player.phoneNumber,
+        avatar: req.player.avatar,
+      };
+      res.status(200).json({ data: player });
+    } catch (error) {
+      res.status(500).json({
+        message: error.message || 'Internal Server Error',
+      });
+    }
+  },
 };

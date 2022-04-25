@@ -12,6 +12,7 @@ const {
   history,
   historyDetail,
   dashboard,
+  profile,
 } = require('./controller');
 
 /* starts with /api/v1/players */
@@ -23,5 +24,6 @@ router.post('/checkout', isLoggedInPlayer, checkOut);
 router.get('/history', isLoggedInPlayer, history);
 router.get('/history/:id/detail', isLoggedInPlayer, historyDetail);
 router.get('/dashboard', isLoggedInPlayer, dashboard);
+router.get('/profile', isLoggedInPlayer, profile);
 
 module.exports = router;
