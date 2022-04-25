@@ -10,6 +10,7 @@ const {
   category,
   checkOut,
   history,
+  historyDetail,
 } = require('./controller');
 
 /* starts with /api/v1/players */
@@ -19,5 +20,6 @@ router.get('/:id/detail', detailPage);
 router.get('/category', category);
 router.post('/checkout', isLoggedInPlayer, checkOut);
 router.get('/history', isLoggedInPlayer, history);
+router.get('/history/:id/detail', isLoggedInPlayer, historyDetail);
 
 module.exports = router;

@@ -171,4 +171,22 @@ module.exports = {
       });
     }
   },
+  historyDetail: async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      const history = await Transaction.findById(id);
+      if (!history) {
+        return res.status(404).json({
+          message: 'Transaction not found',
+        });
+      }
+
+      return res.status(200).json({ data: history });
+    } catch (error) {
+      return res.status(500).json({
+        message: error.message || 'Internal Server Error',
+      });
+    }
+  },
 };
