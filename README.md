@@ -1,5 +1,17 @@
 # Express Game Store Server
 
+Back-end app for Game Store project, consists of admin side pages and API.
+
+Admin is able to perform:
+
+- Login & logout (session based).
+- View dashboard, players, and transaction history.
+- CRUD category, nominal, voucher, bank, payment method.
+- Upload & preview image.
+- Activate or deactivate voucher.
+- Activate or deactivate payment method.
+- Reject or confirm payments.
+
 ## Links
 
 - [Express](https://expressjs.com/)
