@@ -284,6 +284,8 @@ db.users.deleteOne({ _id: ObjectId(<object-id>) });
 
 - Copy the ```connection string url```, which looks like this: ```mongodb+srv://<username>:<password>@<cluster-url>/<dbname>?retryWrites=true&w=majority``` and edit the username, password, and dbname
 
-- Paste the url to MongoDB Compass, then create database (db name & first collection name)
+- Paste the url to ```.env``` for ```MONGO_URL```
+
+- Paste the url to MongoDB Compass, then create database (db name & collections)
 
 - Import json file in ```config/json``` to each collection.
