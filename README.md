@@ -12,6 +12,8 @@ Admin can performs:
 - Activate or deactivate payment method.
 - Reject or confirm payments.
 
+API: [API Documentation (Postman)](https://documenter.getpostman.com/view/16534190/UyrDCb4j)
+
 ## Links
 
 - [Express](https://expressjs.com/)
@@ -25,6 +27,7 @@ Admin can performs:
 - [connect-flash](https://www.npmjs.com/package/connect-flash)
 - [multer](https://www.npmjs.com/package/multer)
 - [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
+- [cors](https://www.npmjs.com/package/cors)
 
 ## Requirements
 
