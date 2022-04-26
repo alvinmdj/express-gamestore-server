@@ -298,12 +298,12 @@ db.users.deleteOne({ _id: ObjectId(<object-id>) });
 
 - Create new app
 
-- Settings the ```config vars``` with variables from ```.env```
+- Go to ```Settings``` and setup the ```config vars``` with variables from ```.env```
 
 - Choose deployment method ```Heroku Git``` (or ```GitHub```)
 
 - Using ```Heroku Git```, run ```heroku login``` from root dir
 
-- Run ```heroku git:remote -a <app-name>``` and check with ```git remove -v```
+- Run ```heroku git:remote -a <app-name>``` and check with ```git remote -v```
 
 - Push to heroku with ```git push heroku main```
