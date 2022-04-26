@@ -2,9 +2,7 @@
 <%- include ../../partials/navbar.ejs %>
 <%- include ../../partials/sidebar.ejs %>
 
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-  <!-- Content Header (Page header) -->
   <section class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
@@ -22,7 +20,6 @@
     </div>
   </section>
 
-  <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
       <div class="row">
@@ -31,7 +28,6 @@
             <div class="card-header">
               <h3 class="card-title">Edit Category - '<%= category.name %>'</h3>
             </div>
-            <!-- form start -->
             <form action="/category/edit/<%= category._id %>?_method=PUT" method="POST">
               <div class="card-body">
                 <div class="form-group">
@@ -44,17 +40,11 @@
               </div>
             </form>
           </div>
-          <!-- /.card -->
         </div>
-        <!-- /.col -->
       </div>
-      <!-- /.row -->
     </div>
-    <!-- /.container-fluid -->
   </section>
-  <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->
 
 <%- include ../../partials/footer.ejs %>
 <%- include ../../partials/js.ejs %>
