@@ -2,7 +2,7 @@
 
 Back-end app for Game Store project, consists of admin side pages and API.
 
-Admin is able to perform:
+Admin can performs:
 
 - Login & logout (session based).
 - View dashboard, players, and transaction history.
