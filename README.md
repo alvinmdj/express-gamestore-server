@@ -14,6 +14,8 @@ Admin can performs:
 
 API: [API Documentation (Postman)](https://documenter.getpostman.com/view/16534190/UyrDCb4j)
 
+Deployed on Heroku: [Game Store Server](https://vin-gamestore.herokuapp.com/)
+
 ## Links
 
 - [Express](https://expressjs.com/)
@@ -272,7 +274,7 @@ db.users.deleteOne({ _id: ObjectId(<object-id>) });
 
 ## MongoDB Atlas Setup
 
-- Login [MongoDB](https://www.mongodb.com/)
+- Login to [MongoDB](https://www.mongodb.com/)
 
 - Create ```new project``` (choose free tier)
 
@@ -289,3 +291,19 @@ db.users.deleteOne({ _id: ObjectId(<object-id>) });
 - Paste the url to MongoDB Compass, then create database (db name & collections)
 
 - Import json file in ```config/json``` to each collection.
+
+## Heroku Setup
+
+- Login to [Heroku](https://dashboard.heroku.com/)
+
+- Create new app
+
+- Settings the ```config vars``` with variables from ```.env```
+
+- Choose deployment method ```Heroku Git``` (or ```GitHub```)
+
+- Using ```Heroku Git```, run ```heroku login``` from root dir
+
+- Run ```heroku git:remote -a <app-name>``` and check with ```git remove -v```
+
+- Push to heroku with ```git push heroku main```
