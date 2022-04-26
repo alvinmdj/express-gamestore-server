@@ -17,11 +17,14 @@ Admin can performs:
 - [Express](https://expressjs.com/)
 - [MongoDB](https://www.mongodb.com/)
 - [Mongoose](https://mongoosejs.com/)
+- [EJS](https://ejs.co/)
 - [ESLint](https://eslint.org/)
 - [AdminLTE](https://adminlte.io/docs/3.2/)
 - [Express - method-override](http://expressjs.com/en/resources/middleware/method-override.html)
 - [express-session](http://expressjs.com/en/resources/middleware/session.html)
 - [connect-flash](https://www.npmjs.com/package/connect-flash)
+- [multer](https://www.npmjs.com/package/multer)
+- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
 
 ## Requirements
 
