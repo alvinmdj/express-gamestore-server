@@ -1,6 +1,6 @@
 # Express Game Store Server
 
-Back-end app for Game Store project, consists of admin side pages and API.
+Back-end for Game Store project, consists of admin pages and API for front-end needs.
 
 Admin can performs:
 
