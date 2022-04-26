@@ -28,6 +28,7 @@ API: [API Documentation (Postman)](https://documenter.getpostman.com/view/165341
 - [multer](https://www.npmjs.com/package/multer)
 - [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
 - [cors](https://www.npmjs.com/package/cors)
+- [env-cmd](https://www.npmjs.com/package/env-cmd)
 
 ## Requirements
 
@@ -55,10 +56,10 @@ cd express-gamestore-server
 npm install
 ```
 
-- Add .env and setup environment variables:
+- Add .env.local and setup the local environment variables (for development):
 
 ```sh
-cp .env.example .env
+cp .env.example .env.local
 ```
 
 - Run (development):
@@ -128,11 +129,15 @@ MONGO_URL=mongodb://127.0.0.1:27017/db_gamestore
 SESSION_KEY=secretkey
 ```
 
-- Run (development):
+- Run:
 
 ```sh
 # open in localhost:3000 by default
-npm run start
+npm run dev # development with .env.local
+
+#
+
+npm run prod # production with .env
 ```
 
 ## [MongoDB Commands](https://www.mongodb.com/docs/)
@@ -264,3 +269,21 @@ db.collection.deleteOne({ field: 'value' });
 # example
 db.users.deleteOne({ _id: ObjectId(<object-id>) });
 ```
+
+## MongoDB Atlas Setup
+
+- Login [MongoDB](https://www.mongodb.com/)
+
+- Create ```new project``` (choose free tier)
+
+- Create ```database access``` (user who can read & write)
+
+- Create ```network access (from anywhere)```
+
+- After database created, click ```Connect to Cluster > Connect your application```
+
+- Copy the ```connection string url```, which looks like this: ```mongodb+srv://<username>:<password>@<cluster-url>/<dbname>?retryWrites=true&w=majority``` and edit the username, password, and dbname
+
+- Paste the url to MongoDB Compass, then create database (db name & first collection name)
+
+- Import json file in ```config/json``` to each collection.
