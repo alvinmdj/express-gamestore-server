@@ -306,4 +306,4 @@ db.users.deleteOne({ _id: ObjectId(<object-id>) });
 
 - Run ```heroku git:remote -a <app-name>``` and check with ```git remote -v```
 
-- Push to heroku with ```git push heroku main```
+- Push to heroku with ```git push heroku main``` (run this to deploy every changes to Heroku)
