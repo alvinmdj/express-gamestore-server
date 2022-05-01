@@ -17,7 +17,7 @@
     "type": "Transfer",
     "bankName": "BCA",
     "name": "Vinski",
-    "noRekening": "123456789"
+    "accountNumber": "123456789"
   },
   "user": {
     "$oid": "60acf086e2e33c145dff9e65"
@@ -63,7 +63,7 @@
     "type": "Tranfer",
     "bankName": "BCA",
     "name": "Vinski",
-    "noRekening": "123456789"
+    "accountNumber": "123456789"
   },
   "user": {
     "$oid": "60acf086e2e33c145dff9e65"
@@ -109,7 +109,7 @@
     "type": "Tranfer",
     "bankName": "BCA",
     "name": "Vinski",
-    "noRekening": "123456789"
+    "accountNumber": "123456789"
   },
   "user": {
     "$oid": "60acf086e2e33c145dff9e65"
