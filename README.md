@@ -16,6 +16,8 @@ API: [API Documentation (Postman)](https://documenter.getpostman.com/view/165341
 
 Deployed on Heroku: [Game Store Server](https://vin-gamestore.herokuapp.com/)
 
+Front-end: [Next Game Store](https://github.com/alvinmdj/next-gamestore)
+
 ## Links
 
 - [Express](https://expressjs.com/)
