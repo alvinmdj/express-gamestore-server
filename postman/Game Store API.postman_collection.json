@@ -1,0 +1,485 @@
+{
+	"info": {
+		"_postman_id": "4068c809-ed53-4aaf-bf7f-8d0a1ff5ff20",
+		"name": "Game Store API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16534190"
+	},
+	"item": [
+		{
+			"name": "Players",
+			"item": [
+				{
+					"name": "Get Landing Page",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/players/landing-page",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								"landing-page"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Detail Page",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/players/603152e0a4dd027eefadde60/detail",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								"603152e0a4dd027eefadde60",
+								"detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/players/category",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Checkout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"voucher\": \"603152e0a4dd027eefadde60\",\r\n    \"nominal\": \"603152e0a4dd027eefaccf62\",\r\n    \"payment\": \"60ae253c729f6e288f94cf44\",\r\n    \"bank\": \"60ae2431196ccd27e6587ab1\",\r\n    \"name\": \"alvin martin djong\",\r\n    \"userAccount\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/players/checkout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								"checkout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transaction History",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/players/history",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								"history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transaction History with Query",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/players/history?status=pending",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								"history"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "pending"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get History Detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/players/history/60bedda711b1afb14e9c608c/detail",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								"history",
+								"60bedda711b1afb14e9c608c",
+								"detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Dashboard",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/players/dashboard",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								"dashboard"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/players/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile without Image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "edited name",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "082130979213",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/players/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile with Image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "edited name",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "082130979213",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Asus/Pictures/Saved Pictures/dio.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/players/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"players",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Sign Up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Asus/Pictures/Saved Pictures/dio.png"
+								},
+								{
+									"key": "email",
+									"value": "dio@player.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "rahasia",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "08123123123",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "alvinmdj",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "alvin martin djong",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "user",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "Y",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "favorite",
+									"value": "603152e0a4dd027eefacce60",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/auth/signup",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign In",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"player@user.com\",\r\n    \"password\": \"rahasia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "urlLocal",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "url",
+			"value": "https://vin-gamestore.herokuapp.com/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF5ZXIiOnsiaWQiOiI2MGJjZWU2OTU2MDNlNjY5MzYzMGM1ZGUiLCJ1c2VybmFtZSI6InBsYXllciB2aW4iLCJlbWFpbCI6InBsYXllckB1c2VyLmNvbSIsIm5hbWUiOiJwbGF5ZXIgdmluIiwicGhvbmVOdW1iZXIiOiIwODE1NDAyMzc5OSIsImF2YXRhciI6ImFiNmZkNTVlY2YzNWU5ZmUyZGU0YWUyNjA2OWEyOGU2LnBuZyJ9LCJpYXQiOjE2NTA4OTc3Njh9.W6NaI49uDblD-Z94kwcr1iXrRj6lj9BiDkKlvSprKTQ",
+			"type": "string"
+		}
+	]
+}
