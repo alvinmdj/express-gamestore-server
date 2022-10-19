@@ -14,7 +14,7 @@ Admin can performs:
 
 API: [API Documentation (Postman)](https://documenter.getpostman.com/view/16534190/UyrDCb4j)
 
-Deployed on Heroku: [Game Store Server](https://vin-gamestore.herokuapp.com/)
+Deployed on Render: [Express Game Store](https://alvinmdj-gamestore.onrender.com/)
 
 Front-end: [Next Game Store](https://github.com/alvinmdj/next-gamestore)
 
